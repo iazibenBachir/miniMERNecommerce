@@ -1,0 +1,80 @@
+@import "./variables.scss";
+
+%horizontal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+%vertical-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+%displayFlexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+%displayFlexCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+%container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media screen and (min-width: $breakpoint-md) {
+    width: 750px;
+  }
+  @media screen and (min-width: $breakpoint-lg) {
+    width: 970px;
+  }
+  @media screen and (min-width: $breakpoint-xlg) {
+    width: 1170px;
+  }
+}
+%container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (min-width: $breakpoint-lg) {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  @media screen and (min-width: $breakpoint-xlg) {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+}
+
+@mixin largDesktop {
+  @media screen and (min-width: $breakpoint-xlg) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}

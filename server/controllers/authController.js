@@ -15,7 +15,7 @@ const register_user = async (req, res) => {
     const token = creatToken(userId);
     res.status(200).json({ token, userId })
   } catch (error) {
-    res.status(400).json({ err_msg: error.message });
+    res.status(400).json({ message: error.message });
   }
 
 };

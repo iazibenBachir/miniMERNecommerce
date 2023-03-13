@@ -1,0 +1,24 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+.wrapper {
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  .container {
+    @extend%container;
+    .product_listings {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      display: grid;
+      gap: 30px;
+      @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include desktop {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @include largDesktop {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+}

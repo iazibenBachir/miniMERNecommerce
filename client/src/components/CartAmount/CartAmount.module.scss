@@ -1,0 +1,25 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+.wrapper {
+  @extend %displayFlexRow;
+  justify-content: space-between;
+  width: 130px;
+  height: 50px;
+  padding: 0 10px;
+  border: 1px solid $gray;
+  border-radius: 30px;
+  .icon {
+    cursor: pointer;
+    color: $gray;
+  }
+  .amount_holder {
+    width: 50%;
+    text-align: center;
+    font-size: 15px;
+    color: $gray;
+  }
+  input {
+    border: none;
+    outline: none;
+  }
+}

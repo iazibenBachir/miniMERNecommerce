@@ -1,0 +1,132 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+.wrapper {
+  background-color: $darkGray;
+  width: 100%;
+  .container {
+    @extend %container;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .header_top {
+      // margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      .logo_wrapper {
+        .logo {
+          width: 100px;
+        }
+      }
+
+      .menu_btn {
+        padding: 10px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        .menu_icon{
+          font-size: 25px;
+          color: #ffffff;
+        }
+        @include laptop {
+          display: none;
+        }
+      }
+      .header_search_widget {
+        display: none;
+        @include laptop {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 15px;
+          padding: 5px;
+          border-radius: 50px;
+          background-color: $lightGray;
+        }
+        .brands_select {
+          border: none;
+          outline: none;
+          background-color: $lightGray;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        input {
+          width: 100%;
+          padding: 10px;
+
+          border: none;
+          outline: none;
+          background: none;
+          position: relative;
+        }
+        .vertical_devider {
+          font-size: 45px;
+          color: $darkGray;
+        }
+        .search_btn {
+          border: none;
+          outline: none;
+          background-color: transparent;
+          padding: 0 30px;
+          .search_icon {
+            font-size: 25px;
+            color: $darkGray;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .header_widgets {
+        flex: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        .header_icon {
+          font-size: 28px;
+          color: #ffffff;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: $red;
+            cursor: pointer;
+          }
+        }
+        .header_auth {
+          display: none;
+          @include laptop {
+            display: inherit;
+          }
+        }
+
+        .vertical_devider {
+          font-size: 40px;
+          display: none;
+          color: #ffffff;
+          @include laptop {
+            display: inherit;
+          }
+        }
+        .header_cart {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+
+          .cart_count_wrapper {
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            gap: 5px;
+          }
+        }
+      }
+    }
+  }
+}

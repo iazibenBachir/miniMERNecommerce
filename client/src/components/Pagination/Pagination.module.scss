@@ -1,0 +1,21 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+.wrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  button {
+    width: 30px;
+    height: 30px;
+    background-color: $lightGray;
+    border: 1px solid $gray;
+    cursor: pointer;
+    &.current{
+        background-color: rgb(181, 181, 252);
+    }
+  }
+}

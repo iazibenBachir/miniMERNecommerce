@@ -1,0 +1,82 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100vh;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  //gap: 20px;
+
+  .heading_wrapper {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .current_thumb {
+      font-size: 26px;
+      color: #ffffff;
+    }
+    .close_icon {
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+    }
+  }
+
+  .main_slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: auto;
+    @include tablet {
+      height: 90vh;
+      width: auto;
+    }
+    @include tablet {
+      height: 70vh;
+      width: auto;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .arrows_wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    .arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease-in;
+      cursor: pointer;
+      .icon {
+        font-size: 24px;
+        color: #ffffff;
+      }
+    }
+  }
+}

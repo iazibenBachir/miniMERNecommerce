@@ -1,0 +1,22 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+.wrapper {
+  @extend%container;
+  min-height: calc(100vh - 100px);
+  .product_listings {
+    display: grid;
+    gap: 30px;
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include largDesktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    &.list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
