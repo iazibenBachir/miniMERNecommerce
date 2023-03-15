@@ -1,7 +1,7 @@
 import Cookies from "js-cookie"
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import AuthService from "../../services/authService";
-
+import { showSnackbar } from "./snackbarSlice"
 const jwt = Cookies.get("jwt")
 const username = Cookies.get("username")
 //const user = JSON.parse(localStorage.getItem("user"));
@@ -13,7 +13,8 @@ export const register = createAsyncThunk(
             const response = await AuthService.register(username, email, password);
             return { user: response };;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.error);
+            thunkAPI.dispatch(showSnackbar(error.response.data.error));
+            return thunkAPI.rejectWithValue(error.response.data.error)
 
         }
     }
@@ -26,9 +27,8 @@ export const login = createAsyncThunk(
             const data = await AuthService.login(email, password);
             return { user: data };
         } catch (error) {
-
-            return thunkAPI.rejectWithValue(error.response.data.error);
-
+            thunkAPI.dispatch(showSnackbar(error.response.data.error));
+            return thunkAPI.rejectWithValue(error.response.data.error)
         }
     }
 );

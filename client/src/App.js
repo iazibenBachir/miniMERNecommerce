@@ -1,5 +1,5 @@
 import "./styles/App.scss";
-import { Route, Routes,Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import Auth from "./pages/Auth/Auth";
 import SearchProduct from "./pages/Search/SearchProduct";
 import Home from "./pages/Home/Home";
+import Snackbar from "./components/Snackbar/Snackbar";
 
 function App() {
   const showCart = useSelector((state) => state.cart.showCart);
@@ -17,6 +18,7 @@ function App() {
     <>
       <Header />
       {showCart && <Cart />}
+      <Snackbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={!user ? <Auth /> : <Navigate to="/" />} />

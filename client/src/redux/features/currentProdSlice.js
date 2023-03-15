@@ -15,20 +15,16 @@ export const getProductReviews = createAsyncThunk("currentProd/reviews", async (
         const data = await currentProd.getProductReviews(id);
         return { reviews: data };
     } catch (err) {
-        return thunkAPI.rejectWithValue();
+        return thunkAPI.rejectWithValue(err.response.data.error);
     }
 })
 export const postNewReview = createAsyncThunk("currentProd/newReviews", async (formData, thunkAPI) => {
     try {
-        console.log("getting prod Revvvvvvvs")
-
         const data = await currentProd.postReview(formData);
         console.log(data)
-        //   thunkAPI.dispatch(incrementReviews());
 
         return { review: data };
     } catch (err) {
-        // thunkAPI.dispatch(setMessage(err));
         console.log(err)
         return thunkAPI.rejectWithValue();
     }
@@ -38,7 +34,7 @@ export const postNewReview = createAsyncThunk("currentProd/newReviews", async (f
 const initialState = {
     reviews: null,
     productDetails: null,
-    message: null
+    error: null
 }
 
 const currentProdSlice = createSlice(

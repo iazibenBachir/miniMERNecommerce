@@ -1,16 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./Auth.module.scss";
-import { GrClose } from "react-icons/gr";
-
-import { useSelector, useDispatch } from "react-redux";
-import {
-  login,
-  register,
-  removeAuthError,
-} from "../../redux/features/authSlice";
+import { useDispatch } from "react-redux";
+import { login, register } from "../../redux/features/authSlice";
 const Auth = () => {
   const dispatch = useDispatch();
-  const {  error } = useSelector((state) => state.auth);
   const [auth, setAuth] = useState("login");
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -19,21 +12,12 @@ const Auth = () => {
   const togglecheckbox = () => {
     setKeepSignedin(!keepSignedin);
   };
-  useEffect(() => {
-    console.log("===========++++++");
-    error &&
-      setTimeout(() => {
-        dispatch(removeAuthError());
-        console.log("===========-----");
-      }, 10000);
-  }, [error,dispatch]);
-  
+
   const handleLogin = async (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     dispatch(login({ email, password }));
-    
   };
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -44,17 +28,6 @@ const Auth = () => {
   };
   return (
     <div className={classes.wrapper}>
-      {error && (
-        <div className={classes.error_wrapper}>
-          <span>{error}</span>
-          <GrClose
-            className={classes.close_error}
-            onClick={() => {
-              dispatch(removeAuthError());
-            }}
-          />
-        </div>
-      )}
       {auth === "login" ? (
         <div className={`${classes.auth} ${classes.login_auth}`}>
           <div className={classes.box_heading}>

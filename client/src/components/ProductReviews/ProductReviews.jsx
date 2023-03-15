@@ -1,21 +1,17 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import classes from "./ProductReviews.module.scss";
 import ReactStars from "react-rating-stars-component";
 import { useSelector, useDispatch } from "react-redux";
-import { addReview } from "../../redux/features/currentProdSlice";
-import axios from "axios";
-import {
-  postNewReview,
-  incrementReviews,
-} from "../../redux/features/currentProdSlice";
+import { postNewReview } from "../../redux/features/currentProdSlice";
 const ProductReviews = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const navigate = useNavigate();
   const {
     _id,
     review: { rating, votes },
   } = useSelector((state) => state.currentProd.productDetails);
-  const reviews = useSelector((state) => state.currentProd.reviews);
   const user = useSelector((state) => state.auth.user);
   const productReviews = useSelector((state) => state.currentProd.reviews);
 
@@ -26,13 +22,12 @@ const ProductReviews = () => {
     setUserRating(newRating);
   };
   const handleClickTab = (tabName) => {
-    if (tabName === "new" && !isLoggedIn) {
-      //dispatch(toggleShowAuthModel());
+    if (tabName === "new" && !user) {
+      navigate("/auth")
     } else {
       setTab(tabName);
     }
   };
-  const API = "http://localhost:4000/api/review";
 
   const handleSubmitReview = async () => {
     const reviewText = reviewTextRef.current.value;
@@ -54,36 +49,6 @@ const ProductReviews = () => {
       return;
     }
     dispatch(postNewReview(formData));
-    //dispatch(incrementReviews());
-    /*
-    try {
-      const response = await axios({
-        method: "POST",
-        url: API,
-
-        data: {
-          productId: id,
-          user: {
-            userName: user.username,
-          },
-          userReview: {
-            rating: userRating,
-            text: reviewText,
-          },
-          review: {
-            rating: rating,
-            votes: votes,
-          },
-        },
-        headers: {
-          Authorization: "Bearer " + user.jwt,
-        },
-      });
-      console.log(response.data);
-    } catch (err) {
-      console.log(err.message);
-    }
-    */
   };
   return (
     <div className={classes.product_reviews_section}>
